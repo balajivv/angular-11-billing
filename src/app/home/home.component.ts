@@ -40,7 +40,7 @@ export class HomeComponent {
   // myFormValueChanges$;
 
   ngOnInit() {
-    questionFormInit();
+    this.questionFormInit();
 
     // console.log(this.billingData.controls);
 
