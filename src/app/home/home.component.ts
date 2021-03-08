@@ -42,7 +42,7 @@ export class HomeComponent {
   ngOnInit() {
     questionFormInit();
 
-    console.log(this.billingData.controls);
+    // console.log(this.billingData.controls);
 
     this.questionsForm.get("billingData").valueChanges.subscribe(questions => {
       //   questions.filter(question => question.minutes).reduce(function (acc, score) {
