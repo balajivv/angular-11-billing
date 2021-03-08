@@ -12,10 +12,7 @@
 <br />
 
 <form [formGroup]="questionsForm">
-  <div
-    formArrayName="billingData"
-    *ngFor="let item of billingData.controls; let i = index;"
-  >
+  <div formArrayName="billingData" *ngFor="let item of billingData.controls; let i = index;">
     <div class="form-group row" [formGroupName]="i">
       <div class="form-group col-1"></div>
 
@@ -72,24 +69,21 @@
  -->
   <br />
   <div class="form-group row">
-     <div class="form-group col-1"></div>
+    <div class="form-group col-1"></div>
 
-      <div class="form-group col-8">
-        <label for="total">Total Time : &nbsp;</label>
-        <input formControlName="totalMinutes" style="max-width:100px;" />
-      </div>
+    <div class="form-group col-8">
+      <label for="total">Total Time : &nbsp;</label>
+      <input formControlName="totalMinutes" style="max-width:100px;" />
+    </div>
   </div>
-  
+
   <br />
 
   <h1>&nbsp; Report</h1>
 
 
 
-  <div
-    formArrayName="billingData"
-    *ngFor="let item of billingData.controls; let i = index;"
-  >
+  <div formArrayName="billingData" *ngFor="let item of billingData.controls; let i = index;">
     <div class="form-group row" [formGroupName]="i">
       <div class="form-group col-1"></div>
 
@@ -99,7 +93,7 @@
           <span *ngIf="item.get('questionType').value =='MC'">
             {{getResponseLabel(item)}}
           </span>
-          : {{item.get('minutes').value}}
+        : {{item.get('minutes').value}}
         </span>
       </div>
     </div>
@@ -108,19 +102,20 @@
 
 
   <div class="container" style="padding-left:20px;">
-  <table class="table table-striped" style="max-width:200px;">
-    <thead>
+    <strong>Code Chart</strong>
+    <table class="table table-striped" style="max-width:200px;">
+      <thead>
         <tr>
-            <th style="width: 50%">Range</th>
-            <th style="width: 50%">Code</th>
+          <th style="width: 50%">Range</th>
+          <th style="width: 50%">Code</th>
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         <tr *ngFor="let item of rangeData; let i = index;">
-            <td>{{item.start}} -  {{item.end}}</td>
-            <td>{{item.code}}</td>
+          <td>{{item.start}} - {{item.end}}</td>
+          <td>{{item.code}}</td>
         </tr>
-    </tbody>
-  </table>
-</div>
+      </tbody>
+    </table>
+  </div>
 </form>
