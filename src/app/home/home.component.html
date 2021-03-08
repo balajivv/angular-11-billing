@@ -84,18 +84,7 @@
 
   <h1>&nbsp; Report</h1>
 
-  <div class="container-fluid"> 
-      <div class="row"> 
-    
-          <div class="col"> 
-              
 
-          </div>
-
-
-      </div>
-
-  </div>
 
   <div
     formArrayName="billingData"
@@ -115,4 +104,23 @@
       </div>
     </div>
   </div>
+
+
+
+  <div class="container" style="padding-left:20px;">
+  <table class="table table-striped" style="max-width:200px;">
+    <thead>
+        <tr>
+            <th style="width: 50%">Range</th>
+            <th style="width: 50%">Code</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of rangeData; let i = index;">
+            <td>{{item.start}} -  {{item.end}}</td>
+            <td>{{item.code}}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
 </form>
