@@ -7,13 +7,15 @@ import { map } from "rxjs/operators";
 import {
   Question,
   QuestionArray,
-  QuestionResponse,
+  RangeInfoArray,
   QuestionResponseArray
 } from "./data-model";
 import { questionJson } from "./questions";
 import { query } from "@angular/animations";
+import { rangeDataJSON } from "./range-data";
 
-const reducer = (accumulator, currentValue) => Number(accumulator) + Number(currentValue);
+const reducer = (accumulator, currentValue) =>
+  Number(accumulator) + Number(currentValue);
 
 @Component({ templateUrl: "home.component.html" })
 export class HomeComponent {
@@ -31,30 +33,32 @@ export class HomeComponent {
 
   questionData: QuestionArray;
 
+  rangeData: RangeInfoArray;
+
   totalMinutes: number = 0;
-  
+
   // myFormValueChanges$;
 
   ngOnInit() {
-   
     questionFormInit();
-    
+
     console.log(this.billingData.controls);
 
-     this.questionsForm.get('billingData').valueChanges
-      .subscribe((questions) => {
-        //   questions.filter(question => question.minutes).reduce(function (acc, score) {
-        //   return acc + score;
-        //  }, 0  )
-        // this.totalMinutes = questions.filter(question => question.minutes)
-        // .map(q=> q.minutes)
-        // .reduce( reducer, 0);
-        // console.log()
-        this.questionsForm.get('totalMinutes').patchValue(questions.filter(question => question.minutes)
-        .map(q=> q.minutes)
-        .reduce( reducer, 0));
-        
-      });
+    this.questionsForm.get("billingData").valueChanges.subscribe(questions => {
+      //   questions.filter(question => question.minutes).reduce(function (acc, score) {
+      //   return acc + score;
+      //  }, 0  )
+      // this.totalMinutes = questions.filter(question => question.minutes)
+      // .map(q=> q.minutes)
+      // .reduce( reducer, 0);
+      // console.log()
+      this.questionsForm.get("totalMinutes").patchValue(
+        questions
+          .filter(question => question.minutes)
+          .map(q => q.minutes)
+          .reduce(reducer, 0)
+      );
+    });
 
     // this.myFormValueChanges$ = this.questionsForm.controls[
     //   "minutes"
@@ -69,7 +73,8 @@ export class HomeComponent {
   }
 
   questionFormInit() {
-     this.questionData = questionJson;
+    this.questionData = questionJson;
+    this.rangeData = rangeDataJSON;
     this.questionsForm = this.builder.group({
       billingData: this.getQuestionArray(this.questionData),
       totalMinutes: { value: this.totalMinutes, disabled: true }
@@ -184,14 +189,14 @@ export class HomeComponent {
   }
 
   totalChange(question) {
-    console.log("totalChange"+question.controls.minutes.value);
+    console.log("totalChange" + question.controls.minutes.value);
     if (question.controls.minutes.value) {
       let totalUnitPrice = question.controls.minutes.value;
       console.log(totalUnitPrice);
       this.totalMinutes += totalUnitPrice;
 
-       console.log(this.totalMinutes);
-      this.questionsForm.get('totalMinutes').patchValue(this.totalMinutes);
+      console.log(this.totalMinutes);
+      this.questionsForm.get("totalMinutes").patchValue(this.totalMinutes);
     }
   }
 
