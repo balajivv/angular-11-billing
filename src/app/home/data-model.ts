@@ -9,6 +9,12 @@ export class Question {
   responseSelected: string;
 }
 
+export class RangeInfo {
+  start: Number;
+  end: Number;
+  code: Number;
+}
+
 export class QuestionResponse {
   responseId: string;
   responseLabel: string;
@@ -18,3 +24,5 @@ export class QuestionResponse {
 export type QuestionArray = Question[];
 
 export type QuestionResponseArray = QuestionResponse[];
+
+export type RangeInfoArray = RangeInfo[];
