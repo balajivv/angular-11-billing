@@ -41,11 +41,6 @@ export const questionJson = [
         responseId: "3",
         responseLabel: "procedures",
         selected: false
-      },
-      {
-        responseId: "4",
-        responseLabel: "all",
-        selected: false
       }
     ],
     responseSelected: "1"
@@ -81,11 +76,6 @@ export const questionJson = [
       {
         responseId: "3",
         responseLabel: "Caregiver",
-        selected: false
-      },
-      {
-        responseId: "4",
-        responseLabel: "all",
         selected: false
       }
     ],
@@ -124,11 +114,6 @@ export const questionJson = [
       {
         responseId: "3",
         responseLabel: "Caregiver",
-        selected: false
-      },
-      {
-        responseId: "4",
-        responseLabel: "all",
         selected: false
       }
     ],
