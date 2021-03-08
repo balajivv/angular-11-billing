@@ -36,12 +36,9 @@ export class HomeComponent {
   // myFormValueChanges$;
 
   ngOnInit() {
-    this.questionData = questionJson;
-
-    this.questionsForm = this.builder.group({
-      billingData: this.getQuestionArray(this.questionData),
-      totalMinutes: { value: this.totalMinutes, disabled: true }
-    });
+   
+    questionFormInit();
+    
     console.log(this.billingData.controls);
 
      this.questionsForm.get('billingData').valueChanges
@@ -69,6 +66,14 @@ export class HomeComponent {
 
     // console.log(this.billingDataFA);
     console.log(this.questionsForm);
+  }
+
+  questionFormInit() {
+     this.questionData = questionJson;
+    this.questionsForm = this.builder.group({
+      billingData: this.getQuestionArray(this.questionData),
+      totalMinutes: { value: this.totalMinutes, disabled: true }
+    });
   }
 
   constructor(
