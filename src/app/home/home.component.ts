@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { User } from '../_models';
-import { AccountService } from '../_services';
+import { User } from "../_models";
+import { AccountService } from "../_services";
 import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { map } from "rxjs/operators";
 import {
@@ -11,29 +11,71 @@ import {
   QuestionResponseArray
 } from "./data-model";
 import { questionJson } from "./questions";
+import { query } from "@angular/animations";
 
-@Component({ templateUrl: 'home.component.html' })
+const reducer = (accumulator, currentValue) => Number(accumulator) + Number(currentValue);
+
+@Component({ templateUrl: "home.component.html" })
 export class HomeComponent {
-  
+  between(x, min, max) {
+    return x >= min && x <= max;
+  }
+
+  findRange() {}
+
+  totalTime() {}
+
   user: User;
 
   questionsForm: FormGroup;
 
   questionData: QuestionArray;
 
+  totalMinutes: number = 0;
+  
+  // myFormValueChanges$;
+
   ngOnInit() {
     this.questionData = questionJson;
 
     this.questionsForm = this.builder.group({
-      billingData: this.getQuestionArray(this.questionData)
+      billingData: this.getQuestionArray(this.questionData),
+      totalMinutes: { value: this.totalMinutes, disabled: true }
     });
+    console.log(this.billingData.controls);
+
+     this.questionsForm.get('billingData').valueChanges
+      .subscribe((questions) => {
+        //   questions.filter(question => question.minutes).reduce(function (acc, score) {
+        //   return acc + score;
+        //  }, 0  )
+        // this.totalMinutes = questions.filter(question => question.minutes)
+        // .map(q=> q.minutes)
+        // .reduce( reducer, 0);
+        // console.log()
+        this.questionsForm.get('totalMinutes').patchValue(questions.filter(question => question.minutes)
+        .map(q=> q.minutes)
+        .reduce( reducer, 0));
+        
+      });
+
+    // this.myFormValueChanges$ = this.questionsForm.controls[
+    //   "minutes"
+    // ].valueChanges;
+    // // subscribe to the stream so listen to changes on units
+    // this.myFormValueChanges$.subscribe(minutes =>
+    //   this.updateTotalMinutes(minutes)
+    // );
 
     // console.log(this.billingDataFA);
-    // console.log(this.questionsForm);
+    console.log(this.questionsForm);
   }
 
-  constructor(private builder: FormBuilder, private accountService: AccountService) {
-     this.user = this.accountService.userValue;
+  constructor(
+    private builder: FormBuilder,
+    private accountService: AccountService
+  ) {
+    this.user = this.accountService.userValue;
   }
 
   getQuestionArray(questionSInfo: QuestionArray): FormArray {
@@ -114,17 +156,15 @@ export class HomeComponent {
     return data.controls.response.value as QuestionResponseArray;
   }
 
-  getResponseLabel(data: any) : string {
-
+  getResponseLabel(data: any): string {
     const rowSelectedVal = data.controls.responseSelected.value;
 
-    const label = this.getQuestionResponseJSON(data).filter( row => 
-      row.responseId===rowSelectedVal
-    ).map(row => row.responseLabel)[0];
+    const label = this.getQuestionResponseJSON(data)
+      .filter(row => row.responseId === rowSelectedVal)
+      .map(row => row.responseLabel)[0];
 
     console.log(label);
 
-    
     return label;
   }
 
@@ -137,4 +177,46 @@ export class HomeComponent {
       question.controls.responseSelected.disable();
     }
   }
+
+  totalChange(question) {
+    console.log("totalChange"+question.controls.minutes.value);
+    if (question.controls.minutes.value) {
+      let totalUnitPrice = question.controls.minutes.value;
+      console.log(totalUnitPrice);
+      this.totalMinutes += totalUnitPrice;
+
+       console.log(this.totalMinutes);
+      this.questionsForm.get('totalMinutes').patchValue(this.totalMinutes);
+    }
+  }
+
+  /**
+   * Update prices as soon as something changed on units group
+   */
+  // private updateTotalMinutes(minutes: any) {
+  //   // get our units group controll
+  //   const control = <FormArray>this.questionsForm.controls["minutes"];
+  //   // before recount total price need to be reset.
+  //   this.totalMinutes = 0;
+  //   for (let i in minutes) {
+  //     let totalUnitPrice = minutes[i].minutes;
+  //     // // now format total price with angular currency pipe
+  //     // let totalUnitPriceFormatted = this.currencyPipe.transform(
+  //     //   totalUnitPrice,
+  //     //   "USD",
+  //     //   "symbol-narrow",
+  //     //   "1.2-2"
+  //     // );
+  //     // // update total sum field on unit and do not emit event myFormValueChanges$ in this case on units
+  //     // control
+  //     //   .at(+i)
+  //     //   .get("unitTotalPrice")
+  //     //   .setValue(totalUnitPriceFormatted, {
+  //     //     onlySelf: true,
+  //     //     emitEvent: false
+  //     //   });
+  //     // update total price for all units
+  //     this.totalMinutes += totalUnitPrice;
+  //   }
+  // }
 }
