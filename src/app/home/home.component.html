@@ -1,0 +1,97 @@
+<!-- <div class="p-4">
+    <div class="container">
+        <h1>Hi {{user.firstName}}!</h1>
+        <p>You're logged in with Angular 10!!</p>
+        <p><a routerLink="/users">Manage Users</a></p>
+    </div>
+</div> -->
+<br />
+
+<h1>&nbsp; Billing</h1>
+
+<br />
+
+<form [formGroup]="questionsForm">
+  <div
+    formArrayName="billingData"
+    *ngFor="let item of billingData.controls; let i = index;"
+  >
+    <div class="form-group row" [formGroupName]="i">
+      <div class="form-group col-1"></div>
+
+      <div class="form-group col-8">
+        <div class="custom-checkbox">
+          <input
+            class="custom-check-input"
+            type="checkbox"
+            (change)="checkboxchange(item)"
+            formControlName="selected"
+            id="defaultCheck1_{{i}}"
+          />
+          <label class="custom-check-label" for="defaultCheck1_{{i}}">
+            &nbsp; {{item.get('questionId').value}}.
+            {{item.get('questionLabel').value}} &nbsp;
+          </label>
+          <select
+            class="custom-select "
+            style="width:auto;"
+            *ngIf="item.get('questionType').value =='MC'"
+            formControlName="responseSelected"
+          >
+            <option
+              *ngFor="let op of getQuestionResponseJSON(item)"
+              [value]="op.responseId"
+              >{{op.responseLabel}}</option
+            >
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group col-1">
+        <input
+          class="float-right"
+          style="max-width:100px;"
+          type="text"
+          formControlName="minutes"
+        />
+      </div>
+
+      <div class="form-group col-1"></div>
+
+      <!-- <pre>{{ item.value | json }}</pre> -->
+      <!-- <input type="checkbox"
+      (change)=checkboxchange(item)
+     formControlName="selected"
+    />  -->
+    </div>
+  </div>
+
+  <!-- 
+ -->
+  <br />
+  <br />
+
+  <div
+  
+    formArrayName="billingData"
+    *ngFor="let item of billingData.controls; let i = index;"
+  >
+  <div class="form-group row" [formGroupName]="i">
+
+    <div class="form-group col-1"></div>
+
+      <div class="form-group col-8">
+
+        <span *ngIf="item.get('selected').value">
+          {{item.get('questionId').value}}. {{item.get('reportLabel').value}}
+          <span *ngIf="item.get('questionType').value =='MC'">
+            {{getResponseLabel(item)}}
+          </span>
+          : {{item.get('minutes').value}}
+        </span>
+      </div>
+
+
+    </div>
+  </div>
+</form>

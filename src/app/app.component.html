@@ -1,0 +1,39 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+  <div class="navbar-nav">
+    <a
+      class="nav-item nav-link"
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}"
+      >Home</a
+    >
+    <!-- <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active"
+      >Users</a
+    >
+    <a class="nav-item nav-link" (click)="logout()">Logout</a> -->
+  </div>
+
+  <div  class="nav navbar-nav ml-auto w-100 justify-content-end">>
+    <span class="navbar-text text-left" >{{user.firstName}} {{user.lastName}} &nbsp; &nbsp; </span>
+     <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+
+  
+</nav>
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+  <alert></alert>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- credits -->
+<div class="text-center mt-4">
+  <p>
+    <a href="www.appsbydocs.com" target="_top">AppsByDocs.com</a>
+  </p>
+  <p>
+    <a href="www.isiteinfo.com" target="_top"></a>
+  </p>
+</div>
