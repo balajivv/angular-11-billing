@@ -12,6 +12,8 @@
     "@angular/platform-browser": "^11.0.8",
     "@angular/platform-browser-dynamic": "^11.0.8",
     "@angular/router": "^11.0.8",
+    "@ng-select/ng-option-highlight": "^0.0.6",
+    "@ng-select/ng-select": "^6.1.0",
     "@types/jasminewd2": "^2.0.8",
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "ng-multiselect-dropdown": "^0.22.11",

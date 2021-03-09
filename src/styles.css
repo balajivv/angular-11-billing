@@ -1,4 +1,6 @@
 /* Add application styles & imports to this file! */
+/* @import "~@ng-select/ng-select/themes/default.theme.css"; */
+
 a { cursor: pointer }
 
 .app-container {
@@ -10,4 +12,44 @@ a { cursor: pointer }
     width: 40px;
     text-align: center;
     box-sizing: content-box;
+}
+
+.multiselect-dropdown .dropdown-btn {
+    display: inline-block;
+    border: 1px solid #adadad;
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.1;
+    text-align: left;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border-radius: 4px;
+}
+
+.dropdown-list {
+    position: absolute;
+    padding-top: 6px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    z-index: 9999;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #fff;
+    margin-top: 10px;
+    box-shadow: 0 1px 5px #959595;
+}
+
+.multiselect-dropdown .dropdown-btn .dropdown-down {
+    display: inline-block;
+    top: 10px;
+    width: 10px;
+    height: 10px;
+    border-top: 20px solid #adadad;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
 }
