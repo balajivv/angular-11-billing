@@ -6,33 +6,33 @@
     </div>
 </div> -->
 <br />
-<div class="col-md-6 offset-md-3 mt-5">
-<h1>&nbsp; Billing</h1>
+<div class="col-md-5 offset-md-2 mt-5">
+  <h1>&nbsp; Billing</h1>
 
-<br />
+  <br />
 
-<form [formGroup]="questionsForm">
-  <div formArrayName="billingData" *ngFor="let item of billingData.controls; let i = index;">
-    <div class="d-flex align-content-start flex-wrap" [formGroupName]="i">
-      <div class="col" style="max-width:30px;"></div>
+  <form [formGroup]="questionsForm">
+    <div formArrayName="billingData" *ngFor="let item of billingData.controls; let i = index;">
+      <div class="d-flex align-content-start flex-wrap" [formGroupName]="i">
+        <div class="col" style="max-width:30px;"></div>
 
-      <!-- <div class="form-group col-8"> -->
-      <div class="custom-checkbox flex-sm-column">
-        <input
+        <!-- <div class="form-group col-8"> -->
+        <div class="custom-checkbox flex-sm-column">
+          <input
             class="custom-check-input"
             type="checkbox"
             (change)="checkboxchange(item)"
             formControlName="selected"
             id="defaultCheck1_{{i}}"
           />
-      </div>
-      <div class="flex-lg-column">
-        <label style="width:ml-auto">
+        </div>
+        <div class="flex-lg-column">
+          <label style="width:ml-auto">
             &nbsp; {{item.get('questionId').value}}.
             {{item.get('questionLabel').value}} &nbsp;
           </label>
-      </div>
-      <!-- <select
+        </div>
+        <!-- <select
             class="custom-select "
             style="width:auto;"
             *ngIf="item.get('questionType').value =='MC'"
@@ -45,33 +45,33 @@
             >
           </select> -->
 
-      <!-- <ng-select  *ngIf="item.get('questionType').value =='MC'" [items]="getQuestionResponseJSON(item)" [multiple]="true" bindLabel="responseLabel" 
+        <!-- <ng-select  *ngIf="item.get('questionType').value =='MC'" [items]="getQuestionResponseJSON(item)" [multiple]="true" bindLabel="responseLabel" 
             [closeOnSelect]="false" bindValue="responseLabel" formControlName="responseSelected">
            
           </ng-select> -->
-      <div class="flex-column">
-        <ng-multiselect-dropdown id="SELECT{{i}}" *ngIf="item.get('questionType').value =='MC'"
-          [placeholder]="'select....'" [data]="getQuestionResponseJSON(item)" formControlName="responseSelected"
-          [disabled]="isDropdownDisabled(item)" [settings]="dropdownSettings">
-        </ng-multiselect-dropdown>
-      </div>
+        <div class="flex-column">
+          <ng-multiselect-dropdown id="SELECT{{i}}" *ngIf="item.get('questionType').value =='MC'"
+            [placeholder]="'select....'" [data]="getQuestionResponseJSON(item)" formControlName="responseSelected"
+            [disabled]="isDropdownDisabled(item)" [settings]="dropdownSettings">
+          </ng-multiselect-dropdown>
+        </div>
 
-      <!-- </div> -->
+        <!-- </div> -->
 
-      <div class="col">
+        <div class="col">
 
 
-        <!-- <input
+          <!-- <input
           class="float-right"
           style="max-width:100px;"
           type="text"
           formControlName="minutes"
         /> -->
 
-        <ng-select [items]="timeSelectData" bindLabel="label" bindValue="keyNumber" class="float-right"
-          style="min-width:100px;max-width:100px;" [multiple]="false" clearAllText="Clear" formControlName="minutes">
-        </ng-select>
-      </div>
+          <ng-select [items]="timeSelectData" bindLabel="label" bindValue="keyNumber" class="float-right"
+            style="min-width:100px;max-width:100px;" [multiple]="false" clearAllText="Clear" formControlName="minutes">
+          </ng-select>
+        </div>
 
 
 
@@ -79,112 +79,112 @@
 
 
 
-      <!-- <pre>{{ item.value | json }}</pre> -->
-      <!-- <input type="checkbox"
+        <!-- <pre>{{ item.value | json }}</pre> -->
+        <!-- <input type="checkbox"
       (change)=checkboxchange(item)
      formControlName="selected"
     />  -->
 
-      <!-- (change)="totalChange(item)" -->
+        <!-- (change)="totalChange(item)" -->
+      </div>
     </div>
-  </div>
 
-  <!-- 
+    <!-- 
  -->
-  <br />
-  <div class="form-group row">
-    <div class="form-group col-1" style="max-width:30px;"></div>
+    <br />
+    <div class="form-group row">
+      <div class="form-group col-1" style="max-width:30px;"></div>
 
-    <div class="form-group col-8">
-      <label for="total">Total Time : &nbsp;</label>
-      <input formControlName="totalMinutes" style="max-width:100px;" />
+      <div class="form-group col-8">
+        <label for="total">Total Time : &nbsp;</label>
+        <input formControlName="totalMinutes" style="max-width:100px;" />
+      </div>
     </div>
-  </div>
 
-  <br />
+    <br />
 
-  <h1>&nbsp; Report</h1>
-
+    <h1>&nbsp; Report</h1>
 
 
-  <ng-template #popContent>
-    <div class="container" style="padding-left:20px;">
 
-      <table class="table table-striped" style="max-width:200px;">
-        <thead>
-          <tr>
-            <th style="width: 50%">Range</th>
-            <th style="width: 50%">Code</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of rangeData; let i = index;">
-            <td>{{item.start}} - {{item.end}}</td>
-            <td>{{item.code}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </ng-template>
-  <ng-template #popTitle>Code Chart</ng-template>
-  <i style="color:blue;padding-left:20px;" triggers="mouseenter:mouseleave"  [ngbPopover]="popContent" [popoverTitle]="popTitle">
+    <ng-template #popContent>
+      <div class="container" style="padding-left:20px;">
+
+        <table class="table table-striped" style="max-width:200px;">
+          <thead>
+            <tr>
+              <th style="width: 50%">Range</th>
+              <th style="width: 50%">Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of rangeData; let i = index;">
+              <td>{{item.start}} - {{item.end}}</td>
+              <td>{{item.code}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+    <ng-template #popTitle>Code Chart</ng-template>
+    <i style="color:blue;padding-left:20px;" triggers="mouseenter:mouseleave"  [ngbPopover]="popContent" [popoverTitle]="popTitle">
   code chart
 </i>
 
-  <br>
-  <br>
+    <br>
+    <br>
 
 
 
 
-  <!-- <button type="button" class="btn-info" placement="top" ngbTooltip="Tooltip on top">
+    <!-- <button type="button" class="btn-info" placement="top" ngbTooltip="Tooltip on top">
   Tooltip on top
 </button>
    -->
 
 
 
-  <div formArrayName="billingData" *ngFor="let item of billingData.controls; let i = index;">
-    <div class="flex-wrap row" [formGroupName]="i">
-      <div class="form-group col-1"></div>
+    <div formArrayName="billingData" *ngFor="let item of billingData.controls; let i = index;">
+      <div class="flex-wrap row" [formGroupName]="i">
+        <div class="form-group col-1"></div>
 
-      <div class="form-group col">
-        <span *ngIf="item.get('selected').value">
+        <div class="form-group col">
+          <span *ngIf="item.get('selected').value">
           {{item.get('questionId').value}}. {{item.get('reportLabel').value}}
           <span *ngIf="item.get('questionType').value =='MC'">
             {{getResponseLabel(item)}}
           </span>
-        : {{item.get('minutes').value}} minutes
-        </span>
+          : {{item.get('minutes').value}} minutes
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col" style="max-width:60px;"></div>
+      <div class="flex-column">
+        <label>Total Time : &nbsp;</label>
+      </div>
+      <div class="flex-column">
+        <label>{{totalMinutes}}</label>
       </div>
     </div>
 
-  </div>
-
-  <div class="row">
-    <div class="col" style="max-width:60px;"></div>
-    <div class="flex-column">
-      <label>Total Time : &nbsp;</label>
+    <div class="row" *ngIf="selectedRange">
+      <div class="col" style="max-width:60px;"></div>
+      <div class="flex-column">
+        <label>Code : &nbsp;</label>
+      </div>
+      <div class="flex-column ">
+        <label>{{selectedRange.code}}</label>
+      </div>
     </div>
-    <div class="flex-column">
-      <label>{{totalMinutes}}</label>
-    </div>
-  </div>
-
-  <div class="row" *ngIf="selectedRange">
-    <div class="col" style="max-width:60px;"></div>
-    <div class="flex-column">
-      <label>Code : &nbsp;</label>
-    </div>
-    <div class="flex-column ">
-      <label>{{selectedRange.code}}</label>
-    </div>
-  </div>
 
 
 
 
 
 
-</form>
+  </form>
 </div>
