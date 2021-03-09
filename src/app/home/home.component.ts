@@ -70,7 +70,7 @@ export class HomeComponent {
     // );
 
     // console.log(this.billingDataFA);
-    console.log(this.questionsForm);
+    // console.log(this.questionsForm);
   }
 
   questionFormInit() {
@@ -185,13 +185,15 @@ export class HomeComponent {
   }
 
   getResponseLabel(data: any): string {
+    
     const rowSelectedVal = data.controls.responseSelected.value;
+  console.log(rowSelectedVal);
+    // const label = this.getQuestionResponseJSON(data)
+    //   .filter(row => row.responseId === rowSelectedVal)
+    //   .map(row => row.responseLabel)[0];
+    const label = rowSelectedVal.map(row => row.responseLabel);
 
-    const label = this.getQuestionResponseJSON(data)
-      .filter(row => row.responseId === rowSelectedVal)
-      .map(row => row.responseLabel)[0];
-
-    console.log(label);
+    console.log(rowSelectedVal.map(row => row.responseLabel));
 
     return label;
   }

@@ -53,3 +53,8 @@ a { cursor: pointer }
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
 }
+
+.d-flex {
+      line-height: 2;
+      border: 20px;;
+}

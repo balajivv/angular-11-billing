@@ -17,22 +17,22 @@
       <div class="col" style="max-width:30px;"></div>
 
       <!-- <div class="form-group col-8"> -->
-        <div class="custom-checkbox flex-sm-column">
-          <input
+      <div class="custom-checkbox flex-sm-column">
+        <input
             class="custom-check-input"
             type="checkbox"
             (change)="checkboxchange(item)"
             formControlName="selected"
             id="defaultCheck1_{{i}}"
           />
-        </div>
-        <div class="flex-lg-column">
-          <label style="width:ml-auto">
+      </div>
+      <div class="flex-lg-column">
+        <label style="width:ml-auto">
             &nbsp; {{item.get('questionId').value}}.
             {{item.get('questionLabel').value}} &nbsp;
           </label>
-          </div>
-          <!-- <select
+      </div>
+      <!-- <select
             class="custom-select "
             style="width:auto;"
             *ngIf="item.get('questionType').value =='MC'"
@@ -45,17 +45,17 @@
             >
           </select> -->
 
-          <!-- <ng-select  *ngIf="item.get('questionType').value =='MC'" [items]="getQuestionResponseJSON(item)" [multiple]="true" bindLabel="responseLabel" 
+      <!-- <ng-select  *ngIf="item.get('questionType').value =='MC'" [items]="getQuestionResponseJSON(item)" [multiple]="true" bindLabel="responseLabel" 
             [closeOnSelect]="false" bindValue="responseLabel" formControlName="responseSelected">
            
           </ng-select> -->
-        <div class="flex-column">
-          <ng-multiselect-dropdown id="SELECT{{i}}" *ngIf="item.get('questionType').value =='MC'"
-            [placeholder]="'custom placeholder'" [data]="getQuestionResponseJSON(item)"
-            formControlName="responseSelected" [disabled]="isDropdownDisabled(item)" [settings]="dropdownSettings">
-          </ng-multiselect-dropdown>
-        </div>
-        
+      <div class="flex-column">
+        <ng-multiselect-dropdown id="SELECT{{i}}" *ngIf="item.get('questionType').value =='MC'"
+          [placeholder]="'custom placeholder'" [data]="getQuestionResponseJSON(item)" formControlName="responseSelected"
+          [disabled]="isDropdownDisabled(item)" [settings]="dropdownSettings">
+        </ng-multiselect-dropdown>
+      </div>
+
       <!-- </div> -->
 
       <div class="col">
@@ -69,9 +69,9 @@
         />
       </div>
 
-       <div class="col" style="max-width:30px;"></div>
 
-       
+
+
 
       <!-- <pre>{{ item.value | json }}</pre> -->
       <!-- <input type="checkbox"
@@ -87,7 +87,7 @@
  -->
   <br />
   <div class="form-group row">
-    <div class="form-group col-1"></div>
+    <div class="form-group col-1" style="max-width:30px;"></div>
 
     <div class="form-group col-8">
       <label for="total">Total Time : &nbsp;</label>
