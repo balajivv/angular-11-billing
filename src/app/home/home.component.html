@@ -29,7 +29,7 @@
             &nbsp; {{item.get('questionId').value}}.
             {{item.get('questionLabel').value}} &nbsp;
           </label>
-          <select
+          <!-- <select
             class="custom-select "
             style="width:auto;"
             *ngIf="item.get('questionType').value =='MC'"
@@ -40,7 +40,14 @@
               [value]="op.responseId"
               >{{op.responseLabel}}</option
             >
-          </select>
+          </select> -->
+
+          	<ng-multiselect-dropdown id="SELECT{{i}}" *ngIf="item.get('questionType').value =='MC'" [placeholder]="'custom placeholder'" [data]="getQuestionResponseJSON(item)" formControlName="responseSelected" 
+  [disabled]="isDropdownDisabled(item)"
+    [settings]="dropdownSettings"
+    
+	 >
+	</ng-multiselect-dropdown>
         </div>
       </div>
 

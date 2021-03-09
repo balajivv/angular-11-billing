@@ -129,12 +129,11 @@ export class HomeComponent {
         }
       ],
       response: this.getResponseArray(questionInfo.response),
-      responseSelected: [
-        {
-          value: questionInfo.responseSelected,
-          disabled: true
-        }
-      ]
+      responseSelected: 
+      {
+        value: questionInfo.responseSelected,
+        disabled: true
+      }
     });
   }
 
@@ -205,6 +204,15 @@ export class HomeComponent {
       question.controls.minutes.disable();
       question.controls.responseSelected.disable();
     }
+  }
+
+  isDropdownDisabled(question) {
+       if (question.controls.selected.value) {
+         return false;
+       }
+       else {
+         return true;
+       }
   }
 
   totalChange(question) {
