@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -17,7 +18,8 @@ import { HomeComponent } from './home';
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NgMultiSelectDropDownModule.forRoot()
     ],
     declarations: [
         AppComponent,
