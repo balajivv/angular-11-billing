@@ -108,7 +108,7 @@ export class HomeComponent {
         this.totalMinutes
       );
       this.findRange();
-      console.log(this.selectedRange);
+      // console.log(this.selectedRange);
     });
   }
 
@@ -199,13 +199,13 @@ export class HomeComponent {
   getResponseLabel(data: any): string {
     
     const rowSelectedVal = data.controls.responseSelected.value;
-  console.log(rowSelectedVal);
+  // console.log(rowSelectedVal);
     // const label = this.getQuestionResponseJSON(data)
     //   .filter(row => row.responseId === rowSelectedVal)
     //   .map(row => row.responseLabel)[0];
     const label = rowSelectedVal.map(row => row.responseLabel);
 
-    console.log(rowSelectedVal.map(row => row.responseLabel));
+    // console.log(rowSelectedVal.map(row => row.responseLabel));
 
     return label;
   }
@@ -233,10 +233,10 @@ export class HomeComponent {
     console.log("totalChange" + question.controls.minutes.value);
     if (question.controls.minutes.value) {
       let totalUnitPrice = question.controls.minutes.value;
-      console.log(totalUnitPrice);
+      // console.log(totalUnitPrice);
       this.totalMinutes += totalUnitPrice;
 
-      console.log(this.totalMinutes);
+      // console.log(this.totalMinutes);
       this.questionsForm.get("totalMinutes").patchValue(this.totalMinutes);
     }
   }
