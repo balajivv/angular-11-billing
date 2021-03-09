@@ -1,5 +1,5 @@
 /* Add application styles & imports to this file! */
-/* @import "~@ng-select/ng-select/themes/default.theme.css"; */
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 a { cursor: pointer }
 

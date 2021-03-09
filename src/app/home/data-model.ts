@@ -15,6 +15,12 @@ export class RangeInfo {
   code: Number;
 }
 
+export class SelectItem {
+  key: string;
+  keyNumber: Number;
+  label: string;
+}
+
 export class QuestionResponse {
   responseId: string;
   responseLabel: string;
@@ -26,3 +32,5 @@ export type QuestionArray = Question[];
 export type QuestionResponseArray = QuestionResponse[];
 
 export type RangeInfoArray = RangeInfo[];
+
+export type SelectItemArray = SelectItem[];

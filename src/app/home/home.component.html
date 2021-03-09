@@ -61,12 +61,24 @@
       <div class="col">
 
 
-        <input
+        <!-- <input
           class="float-right"
           style="max-width:100px;"
           type="text"
           formControlName="minutes"
-        />
+        /> -->
+
+       <ng-select 
+                   [items]="timeSelectData"
+                   bindLabel="label"
+                   bindValue="keyNumber"
+                   class="float-right"
+          style="min-width:70px;max-width:100px;"
+                   [multiple]="false"
+                   
+                   clearAllText="Clear"
+                   formControlName="minutes">
+        </ng-select>
       </div>
 
 

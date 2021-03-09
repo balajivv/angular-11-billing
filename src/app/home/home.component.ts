@@ -4,41 +4,40 @@ import { User } from "../_models";
 import { AccountService } from "../_services";
 import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { map } from "rxjs/operators";
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { IDropdownSettings } from "ng-multiselect-dropdown";
 import {
   Question,
   QuestionArray,
   RangeInfoArray,
-  QuestionResponseArray, RangeInfo
+  QuestionResponseArray,
+  RangeInfo,
+  SelectItemArray
 } from "./data-model";
 import { questionJson } from "./questions";
 import { query } from "@angular/animations";
 import { rangeDataJSON } from "./range-data";
+import { timeSelectDataJSON } from "./time-data";
 
 const reducer = (accumulator, currentValue) =>
   Number(accumulator) + Number(currentValue);
 
 @Component({ templateUrl: "home.component.html" })
 export class HomeComponent {
-
-    dropdownSettings :IDropdownSettings;
-
+  dropdownSettings: IDropdownSettings;
 
   between(x, min, max) {
     return x >= min && x <= max;
   }
 
-  
-
   findRange() {
-    this.rangeData.forEach( (currentValue, index) => {
-        if(this.between(this.totalMinutes, currentValue.start, currentValue.end)) {
-            this.selectedRange = currentValue;
-        }
+    this.rangeData.forEach((currentValue, index) => {
+      if (
+        this.between(this.totalMinutes, currentValue.start, currentValue.end)
+      ) {
+        this.selectedRange = currentValue;
+      }
     });
   }
-
-
 
   user: User;
 
@@ -48,6 +47,8 @@ export class HomeComponent {
 
   rangeData: RangeInfoArray;
 
+  timeSelectData: SelectItemArray;
+
   totalMinutes: number = 0;
 
   selectedRange: RangeInfo;
@@ -55,20 +56,17 @@ export class HomeComponent {
   // myFormValueChanges$;
 
   ngOnInit() {
-    
     this.questionFormInit();
 
-     this.dropdownSettings = {
+    this.dropdownSettings = {
       singleSelection: false,
-      idField: 'responseId',
-      textField: 'responseLabel',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
+      idField: "responseId",
+      textField: "responseLabel",
+      selectAllText: "Select All",
+      unSelectAllText: "UnSelect All",
       itemsShowLimit: 3,
       allowSearchFilter: false
     };
-
-   
 
     // this.myFormValueChanges$ = this.questionsForm.controls[
     //   "minutes"
@@ -85,12 +83,13 @@ export class HomeComponent {
   questionFormInit() {
     this.questionData = questionJson;
     this.rangeData = rangeDataJSON;
+    this.timeSelectData = timeSelectDataJSON;
     this.questionsForm = this.builder.group({
       billingData: this.getQuestionArray(this.questionData),
       totalMinutes: { value: this.totalMinutes, disabled: true }
     });
 
-     // console.log(this.billingData.controls);
+    // console.log(this.billingData.controls);
 
     this.questionsForm.get("billingData").valueChanges.subscribe(questions => {
       //   questions.filter(question => question.minutes).reduce(function (acc, score) {
@@ -101,12 +100,10 @@ export class HomeComponent {
       // .reduce( reducer, 0);
       // console.log()
       this.totalMinutes = questions
-          .filter(question => question.minutes)
-          .map(q => q.minutes)
-          .reduce(reducer, 0);
-      this.questionsForm.get("totalMinutes").patchValue(
-        this.totalMinutes
-      );
+        .filter(question => question.minutes)
+        .map(q => q.minutes)
+        .reduce(reducer, 0);
+      this.questionsForm.get("totalMinutes").patchValue(this.totalMinutes);
       this.findRange();
       // console.log(this.selectedRange);
     });
@@ -141,8 +138,7 @@ export class HomeComponent {
         }
       ],
       response: this.getResponseArray(questionInfo.response),
-      responseSelected: 
-      {
+      responseSelected: {
         value: questionInfo.responseSelected,
         disabled: true
       }
@@ -197,9 +193,8 @@ export class HomeComponent {
   }
 
   getResponseLabel(data: any): string {
-    
     const rowSelectedVal = data.controls.responseSelected.value;
-  // console.log(rowSelectedVal);
+    // console.log(rowSelectedVal);
     // const label = this.getQuestionResponseJSON(data)
     //   .filter(row => row.responseId === rowSelectedVal)
     //   .map(row => row.responseLabel)[0];
@@ -221,12 +216,11 @@ export class HomeComponent {
   }
 
   isDropdownDisabled(question) {
-       if (question.controls.selected.value) {
-         return false;
-       }
-       else {
-         return true;
-       }
+    if (question.controls.selected.value) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   totalChange(question) {
