@@ -6,7 +6,7 @@
     </div>
 </div> -->
 <br />
-<div class="col-md-5 offset-md-2 mt-5">
+<div class="col-md-7 offset-md-2 mt-5">
   <h1>&nbsp; Billing</h1>
 
   <br />
@@ -14,7 +14,7 @@
   <form [formGroup]="questionsForm">
     <div formArrayName="billingData" *ngFor="let item of billingData.controls; let i = index;">
       <div class="d-flex align-content-start flex-wrap" [formGroupName]="i">
-        <div class="col" style="max-width:30px;"></div>
+ 
 
         <!-- <div class="form-group col-8"> -->
         <div class="custom-checkbox flex-sm-column">
@@ -93,7 +93,7 @@
  -->
     <br />
     <div class="form-group row">
-      <div class="form-group col-1" style="max-width:30px;"></div>
+      
 
       <div class="form-group col-8">
         <label for="total">Total Time : &nbsp;</label>
@@ -108,7 +108,7 @@
 
 
     <ng-template #popContent>
-      <div class="container" style="padding-left:20px;">
+      <div class="container" >
 
         <table class="table table-striped" style="max-width:200px;">
           <thead>
@@ -146,7 +146,7 @@
 
     <div formArrayName="billingData" *ngFor="let item of billingData.controls; let i = index;">
       <div class="flex-wrap row" [formGroupName]="i">
-        <div class="form-group col-1"></div>
+        
 
         <div class="form-group col">
           <span *ngIf="item.get('selected').value">
@@ -162,7 +162,7 @@
     </div>
 
     <div class="row">
-      <div class="col" style="max-width:60px;"></div>
+      <div class="col" style="max-width:20px;"></div>
       <div class="flex-column">
         <label>Total Time : &nbsp;</label>
       </div>
@@ -172,7 +172,7 @@
     </div>
 
     <div class="row" *ngIf="selectedRange">
-      <div class="col" style="max-width:60px;"></div>
+      <div class="col" style="max-width:20px;"></div>
       <div class="flex-column">
         <label>Code : &nbsp;</label>
       </div>
