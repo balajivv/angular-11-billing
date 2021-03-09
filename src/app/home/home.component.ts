@@ -9,7 +9,7 @@ import {
   Question,
   QuestionArray,
   RangeInfoArray,
-  QuestionResponseArray
+  QuestionResponseArray, RangeInfo
 } from "./data-model";
 import { questionJson } from "./questions";
 import { query } from "@angular/animations";
@@ -30,9 +30,15 @@ export class HomeComponent {
 
   
 
-  findRange() {}
+  findRange() {
+    this.rangeData.forEach( (currentValue, index) => {
+        if(this.between(this.totalMinutes, currentValue.start, currentValue.end)) {
+            this.selectedRange = currentValue;
+        }
+    });
+  }
 
-  totalTime() {}
+
 
   user: User;
 
@@ -43,6 +49,8 @@ export class HomeComponent {
   rangeData: RangeInfoArray;
 
   totalMinutes: number = 0;
+
+  selectedRange: RangeInfo;
 
   // myFormValueChanges$;
 
@@ -92,12 +100,15 @@ export class HomeComponent {
       // .map(q=> q.minutes)
       // .reduce( reducer, 0);
       // console.log()
-      this.questionsForm.get("totalMinutes").patchValue(
-        questions
+      this.totalMinutes = questions
           .filter(question => question.minutes)
           .map(q => q.minutes)
-          .reduce(reducer, 0)
+          .reduce(reducer, 0);
+      this.questionsForm.get("totalMinutes").patchValue(
+        this.totalMinutes
       );
+      this.findRange();
+      console.log(this.selectedRange);
     });
   }
 

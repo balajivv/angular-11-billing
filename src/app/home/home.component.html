@@ -51,7 +51,7 @@
           </ng-select> -->
       <div class="flex-column">
         <ng-multiselect-dropdown id="SELECT{{i}}" *ngIf="item.get('questionType').value =='MC'"
-          [placeholder]="'custom placeholder'" [data]="getQuestionResponseJSON(item)" formControlName="responseSelected"
+          [placeholder]="'select....'" [data]="getQuestionResponseJSON(item)" formControlName="responseSelected"
           [disabled]="isDropdownDisabled(item)" [settings]="dropdownSettings">
         </ng-multiselect-dropdown>
       </div>
@@ -121,9 +121,11 @@
     </div>
   </ng-template>
   <ng-template #popTitle>Code Chart</ng-template>
-  <i style="padding-left:20px;" triggers="mouseenter:mouseleave"  [ngbPopover]="popContent" [popoverTitle]="popTitle">
+  <i style="color:blue;padding-left:20px;" triggers="mouseenter:mouseleave"  [ngbPopover]="popContent" [popoverTitle]="popTitle">
   code chart
 </i>
+
+<br>
 
 
 
@@ -136,20 +138,43 @@
 
 
   <div formArrayName="billingData" *ngFor="let item of billingData.controls; let i = index;">
-    <div class="form-group row" [formGroupName]="i">
+    <div class="flex-wrap row" [formGroupName]="i">
       <div class="form-group col-1"></div>
 
-      <div class="form-group col-8">
+      <div class="form-group col">
         <span *ngIf="item.get('selected').value">
           {{item.get('questionId').value}}. {{item.get('reportLabel').value}}
           <span *ngIf="item.get('questionType').value =='MC'">
             {{getResponseLabel(item)}}
           </span>
-        : {{item.get('minutes').value}}
+        : {{item.get('minutes').value}} minutes
         </span>
       </div>
     </div>
+
   </div>
+
+  <div class="row" >
+      <div class="col" style="max-width:60px;"></div>
+      <div class="flex-column">
+          <label>Total Time : &nbsp;</label>
+      </div>
+       <div class="flex-column">
+          <label>{{totalMinutes}}</label>
+      </div>
+  </div>
+
+    <div class="row" *ngIf="selectedRange" >
+      <div class="col" style="max-width:60px;"></div>
+      <div class="flex-column">
+          <label>Code : &nbsp;</label>
+      </div>
+       <div class="flex-column ">
+          <label>{{selectedRange.code}}</label>
+      </div>
+  </div>
+
+
 
 
 
