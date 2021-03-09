@@ -4,6 +4,7 @@ import { User } from "../_models";
 import { AccountService } from "../_services";
 import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { map } from "rxjs/operators";
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import {
   Question,
   QuestionArray,
@@ -19,9 +20,15 @@ const reducer = (accumulator, currentValue) =>
 
 @Component({ templateUrl: "home.component.html" })
 export class HomeComponent {
+
+    dropdownSettings :IDropdownSettings;
+
+
   between(x, min, max) {
     return x >= min && x <= max;
   }
+
+  
 
   findRange() {}
 
@@ -42,23 +49,17 @@ export class HomeComponent {
   ngOnInit() {
     this.questionFormInit();
 
-    // console.log(this.billingData.controls);
+     this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'responseId',
+      textField: 'responseLabel',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: false
+    };
 
-    this.questionsForm.get("billingData").valueChanges.subscribe(questions => {
-      //   questions.filter(question => question.minutes).reduce(function (acc, score) {
-      //   return acc + score;
-      //  }, 0  )
-      // this.totalMinutes = questions.filter(question => question.minutes)
-      // .map(q=> q.minutes)
-      // .reduce( reducer, 0);
-      // console.log()
-      this.questionsForm.get("totalMinutes").patchValue(
-        questions
-          .filter(question => question.minutes)
-          .map(q => q.minutes)
-          .reduce(reducer, 0)
-      );
-    });
+   
 
     // this.myFormValueChanges$ = this.questionsForm.controls[
     //   "minutes"
@@ -78,6 +79,24 @@ export class HomeComponent {
     this.questionsForm = this.builder.group({
       billingData: this.getQuestionArray(this.questionData),
       totalMinutes: { value: this.totalMinutes, disabled: true }
+    });
+
+     // console.log(this.billingData.controls);
+
+    this.questionsForm.get("billingData").valueChanges.subscribe(questions => {
+      //   questions.filter(question => question.minutes).reduce(function (acc, score) {
+      //   return acc + score;
+      //  }, 0  )
+      // this.totalMinutes = questions.filter(question => question.minutes)
+      // .map(q=> q.minutes)
+      // .reduce( reducer, 0);
+      // console.log()
+      this.questionsForm.get("totalMinutes").patchValue(
+        questions
+          .filter(question => question.minutes)
+          .map(q => q.minutes)
+          .reduce(reducer, 0)
+      );
     });
   }
 
