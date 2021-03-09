@@ -68,16 +68,8 @@
           formControlName="minutes"
         /> -->
 
-       <ng-select 
-                   [items]="timeSelectData"
-                   bindLabel="label"
-                   bindValue="keyNumber"
-                   class="float-right"
-          style="min-width:70px;max-width:100px;"
-                   [multiple]="false"
-                   
-                   clearAllText="Clear"
-                   formControlName="minutes">
+        <ng-select [items]="timeSelectData" bindLabel="label" bindValue="keyNumber" class="float-right"
+          style="min-width:100px;max-width:100px;" [multiple]="false" clearAllText="Clear" formControlName="minutes">
         </ng-select>
       </div>
 
@@ -137,8 +129,8 @@
   code chart
 </i>
 
-<br>
-<br>
+  <br>
+  <br>
 
 
 
@@ -167,24 +159,24 @@
 
   </div>
 
-  <div class="row" >
-      <div class="col" style="max-width:60px;"></div>
-      <div class="flex-column">
-          <label>Total Time : &nbsp;</label>
-      </div>
-       <div class="flex-column">
-          <label>{{totalMinutes}}</label>
-      </div>
+  <div class="row">
+    <div class="col" style="max-width:60px;"></div>
+    <div class="flex-column">
+      <label>Total Time : &nbsp;</label>
+    </div>
+    <div class="flex-column">
+      <label>{{totalMinutes}}</label>
+    </div>
   </div>
 
-    <div class="row" *ngIf="selectedRange" >
-      <div class="col" style="max-width:60px;"></div>
-      <div class="flex-column">
-          <label>Code : &nbsp;</label>
-      </div>
-       <div class="flex-column ">
-          <label>{{selectedRange.code}}</label>
-      </div>
+  <div class="row" *ngIf="selectedRange">
+    <div class="col" style="max-width:60px;"></div>
+    <div class="flex-column">
+      <label>Code : &nbsp;</label>
+    </div>
+    <div class="flex-column ">
+      <label>{{selectedRange.code}}</label>
+    </div>
   </div>
 
 
