@@ -47,6 +47,7 @@ export class HomeComponent {
   // myFormValueChanges$;
 
   ngOnInit() {
+    
     this.questionFormInit();
 
      this.dropdownSettings = {
