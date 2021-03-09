@@ -19,4 +19,9 @@ export const rangeDataJSON = [
     end: 54,
     code: 99215
   },
+  {
+    start: 55,
+    end: 9999999,
+    code: 999999
+  },
 ];
