@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -23,6 +24,7 @@ import { HomeComponent } from './home';
         AppRoutingModule,
         NgSelectModule,
         NgOptionHighlightModule,
+        NgbModule,
         NgMultiSelectDropDownModule.forRoot()
         
     ],
